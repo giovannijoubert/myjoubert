@@ -1,0 +1,369 @@
+$spaceamounts: (2, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 75, 100, 150, 250);
+$sides: (top, bottom, left, right);
+
+@each $space in $spaceamounts {
+  @each $side in $sides {
+    .m-#{str-slice($side, 0, 1)}-#{$space} {
+      margin-#{$side}: #{$space}px !important;
+    }
+
+    .p-#{str-slice($side, 0, 1)}-#{$space} {
+      padding-#{$side}: #{$space}px !important;
+    }
+  }
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Dosis");
+
+body.dark-mode {
+  transition: background color 0.5s;
+  color: #ffffff;
+  background: #000;
+} 
+
+body.dark-mode .mj-game-container {
+  background: #111;
+}
+
+body.dark-mode::after {
+  transition: opacity 0.5s;
+  opacity: 0.1;
+} 
+
+body.dark-mode .navigation {
+  transition: background box-shadow 0.5s;
+  background: #111;
+  box-shadow: none;
+}
+
+body.dark-mode .chat-component {
+  box-shadow: none;
+  background: #111;
+}
+
+body.dark-mode .chat-bubble{
+  color: #fff;
+  background: #333;
+}
+
+body.dark-mode .chat-gallery.attachment {
+  border-radius: 15px;
+}
+
+body.dark-mode .mj-card {
+  background: #111;
+  color: #fff;
+}
+
+body.dark-mode .songResults {
+  background: #111;
+}
+
+body {
+  transition: background color 0.5s;
+  font-family: Dosis, Helvetica, Arial, sans-serif !important;
+  color: #333;
+  font-size: 18px;
+  background: #efefef;
+}
+
+svg {
+  font-family: Dosis, Helvetica, Arial, sans-serif !important;
+}
+
+body::after {
+  transition: opacity 0.5s;
+  content: "";
+  background: url("https://s3.af-south-1.amazonaws.com/myjoubert.co.za/static-content/ui/whatsapp-bg.png");
+  opacity: 0.7;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -2;
+}
+
+.back-app-button {
+  position: absolute;
+  left: 50px;
+  top: 50px;
+  z-index: 999;
+}
+
+.hoverZoom {
+  transition: transform 0.5s;
+}
+
+
+.hoverZoom:hover {
+  transform: scale(1.05);
+  transition: transform 0.5s;
+}
+
+
+.vs-notification-parent,
+.vs-select__options__content {
+  font-family: Dosis, Helvetica, Arial, sans-serif;
+}
+
+.emoji-reaction {
+  font-size: 35px !important;
+  margin: 10px !important;
+}
+
+.emoji-reaction.medium {
+  font-size: 50px !important;
+}
+
+.emoji-reaction.large {
+  font-size: 75px !important;
+}
+
+.section-title {
+  letter-spacing: 5px;
+  margin-bottom: 10px;
+}
+
+.section-description {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+// mobile notification bottom overwrite
+.vs-notification__content__header h4 {
+  font-size: 18px;
+}
+
+.vs-notification__content__text p {
+  font-size: 16px;
+}
+
+.vs-notification {
+  border-radius: 20px !important;
+  padding: 20px !important;
+}
+
+.vs-notification-parent.vs-notification-parent--bottom-center {
+  width: fit-content !important;
+  left: unset !important;
+  right: 0px !important;
+  transform: unset !important;
+  -webkit-transform: unset !important;
+}
+
+@media (max-width: 600px) {
+  .vs-notification {
+    margin: 5px !important;
+    border-radius: 20px !important;
+    width: unset !important;
+    max-width: unset !important;
+    min-width: unset !important;
+  }
+}
+
+@media (max-width: 763px) {
+  .back-app-button {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+  }
+  .vs-notification:last-child {
+    margin-bottom: 10px !important;
+  }
+}
+
+// animations
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+
+.scale-enter-active,
+.scale-leave-active {
+  transition: all 0.3s ease;
+}
+
+.scale-enter-to {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.scale-enter,
+.scale-leave-to {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.chat-bubble-enter-active,
+.chat-bubble-leave-active {
+  transition: all 0.3s ease;
+}
+
+.chat-bubble-enter-to {
+  transform: translateX(0px);
+  opacity: 1;
+}
+
+
+.chat-bubble-enter,
+.chat-bubble-leave-to {
+  opacity: 0;
+  transform: translateX(50px);
+}
+
+@mixin vs-md-xl-x {
+  $columns: 12;
+  $one-width: 1/$columns;
+  @for $i from 1 through $columns {
+    @media (min-width: 576px) and (max-width: 768px) {
+      .vs-sm-#{$i} {
+        width: percentage($i * $one-width)+unquote('!important');
+      }
+    }
+
+    @media (min-width: 768px) and (max-width: 992px) {
+      .vs-md-#{$i} {
+        width: percentage($i * $one-width)+unquote('!important');
+      }
+    }
+
+    @media (min-width: 992px) and (max-width: 1400px) {
+      .vs-lg-#{$i} {
+        width: percentage($i * $one-width)+unquote('!important');
+      }
+    }
+    
+    @media (min-width: 1400px) {
+      .vs-xl-#{$i} {
+        width: percentage($i * $one-width)+unquote('!important');
+      }
+    }
+  }
+}
+@include vs-md-xl-x;
+
+
+
+// calendar
+$namespace: 'mx'; // change the 'mx' to 'xmx'. then <date-picker prefix-class="xmx" />
+
+$default-color: #555;
+$primary-color: rgb(25, 91, 255);
+
+@import '~vue2-datepicker/scss/index.scss';
+
+.mx-calendar-content .cell.active {
+  border-radius: 50%;
+}
+
+.mx-datepicker-popup{
+  border-radius: 15px;
+  border: none;
+}
+
+.mx-input {
+  border-radius: 10px; 
+  background: rgba(var(--vs-gray-2), 1); 
+  color: rgba(var(--vs-text), 1); 
+  border: none;
+}
+
+
+.vs-card__interactions {
+  display: block !important;
+}
+
+.mj-input-text{
+  font-family: Dosis, Helvetica, Arial, sans-serif !important;
+  outline: none;
+  border: 2px solid transparent;
+  background: rgba(var(--vs-gray-2), 1);
+  color: rgba(var(--vs-text), 1);
+  border-radius: 20px;
+  width: 90%;
+  margin: 0 auto;
+  padding: 10px;
+  resize: none;
+}
+
+.mj-center{
+  margin: 0 auto;
+}
+
+.mj-light-grey{
+  color: #ccc;
+}
+
+table .vs-table__th__content {
+  margin: 0 auto;
+  width: fit-content;
+}
+
+.vs-table table {
+  min-width: unset;
+}
+
+.boxShadow {
+  box-shadow: 0 3px 15px 0 rgb(0 0 0 / 10%);
+}
+
+.mj-card {
+  box-shadow: 0 3px 15px 0 rgb(0 0 0 / 10%);
+  background: #fff;
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+  border-radius: 20px;
+}
+/* responsive tables
+@media screen and (max-width: 200px) {
+  table {
+    border: 0;
+  }
+
+  table caption {
+    font-size: 1.3em;
+  }
+  
+  table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  
+  table tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+    margin-bottom: .625em;
+  }
+  
+  table td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: .8em;
+    text-align: right;
+  }
+  
+  table td::before {
+
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  table td:last-child {
+    border-bottom: 0;
+  }
+}
+*/
